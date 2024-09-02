@@ -2,6 +2,24 @@ name: Pnpm Setup
 
 on:
   workflow_call:
+    inputs:
+      working-directory:
+        required: false
+        type: string
+        default: .
+      node-version:
+        required: false
+        type: string
+      pnpm-version:
+        required: false
+        type: string
+      package-json-file:
+        required: false
+        default: "package.json"
+        type: string
+    secrets:
+      npm-token:
+        required: true
 
 jobs:
   setup:
@@ -9,7 +27,7 @@ jobs:
     timeout-minutes: 15
     defaults:
       run:
-        working-directory: .
+        working-directory: ${{ inputs.working-directory }}
     runs-on: ubuntu-latest
 
     steps:
@@ -21,13 +39,15 @@ jobs:
       - name: Install Node.js
         uses: actions/setup-node@v4
         with:
-          node-version-file: "package.json"
+          node-version: ${{ inputs.node-version }}
+          node-version-file: ${{ inputs.package-json-file }}
 
       - uses: pnpm/action-setup@v4
         name: Install pnpm
         id: pnpm-install
         with:
-          package_json_file: "package.json"
+          version: ${{ inputs.pnpm-version }}
+          package_json_file: ${{ inputs.package-json-file }}
           run_install: false
 
       - name: Get pnpm store directory

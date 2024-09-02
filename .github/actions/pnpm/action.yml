@@ -1,21 +1,54 @@
-name: Install pnpm and pnpm install
+name: Restore pnpm store and install dependencies
+
+inputs:
+  working-directory:
+    descirption: "Working directory"
+    default: .
+  node-version:
+    description: "Node version"
+    required: false
+  pnpm-version:
+    description: "Pnpm version"
+    required: false
+  package-json-file:
+    required: false
+    default: "package.json"
+    type: string
+  npm-token:
+    description: "Npm token"
+    required: false
 
 runs:
-  using: 'composite'
+  using: "composite"
   steps:
-    - name: Setup Node
-      uses: actions/setup-node@v4
-    - name: Setup pnpm
-      uses: pnpm/action-setup@v3.0.0
-      with:
-        version: 'latest'
     - name: Setup Node.js environment
       uses: actions/setup-node@v4
       with:
-        node-version: 'latest'
-        cache: 'pnpm'
-        cache-dependency-path: 'pnpm-lock.yaml'
+        node-version: ${{ inputs.node-version }}
+        node-version-file: ${{ inputs.package-json-file }}
+
+    - uses: pnpm/action-setup@v4
+      with:
+        version: ${{ inputs.pnpm-version }}
+        package_json_file: ${{ inputs.package-json-file }}
+
+    - name: Get pnpm store directory
+      id: pnpm-cache
+      run: |
+        cd ${{ inputs.working-directory }}
+        echo "STORE_PATH=$(pnpm store path)" >> "$GITHUB_OUTPUT"
+      shell: bash
+
+    - name: Restore pnpm store
+      uses: actions/cache@v4
+      env:
+        cache-name: pnpm-store-cache
+      with:
+        path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+        key: ${{ env.cache-name }}-${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
+
     - name: Install dependencies
-      run: pnpm install
-    - name: Build
-      run: pnpm run generate:docs
+      run: |
+        cd ${{ inputs.working-directory }}
+        pnpm install --frozen-lockfile
+      shell: bash
