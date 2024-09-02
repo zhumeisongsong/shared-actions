@@ -4,16 +4,11 @@ inputs:
   working-directory:
     descirption: "Working directory"
     default: .
-  node-version:
-    description: "Node version"
-    required: false
-  pnpm-version:
-    description: "Pnpm version"
     required: false
   package-json-file:
-    required: false
-    default: "package.json"
     type: string
+    default: "package.json"
+    required: false
 
 runs:
   using: "composite"
@@ -21,12 +16,10 @@ runs:
     - name: Setup Node.js environment
       uses: actions/setup-node@v4
       with:
-        node-version: ${{ inputs.node-version }}
         node-version-file: ${{ inputs.package-json-file }}
 
     - uses: pnpm/action-setup@v4
       with:
-        version: ${{ inputs.pnpm-version }}
         package_json_file: ${{ inputs.package-json-file }}
 
     - name: Get pnpm store directory
