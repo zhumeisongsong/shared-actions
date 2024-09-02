@@ -14,9 +14,6 @@ inputs:
     required: false
     default: "package.json"
     type: string
-  npm-token:
-    description: "Npm token"
-    required: false
 
 runs:
   using: "composite"
