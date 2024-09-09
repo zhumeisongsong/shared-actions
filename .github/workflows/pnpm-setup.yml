@@ -7,16 +7,6 @@ on:
         required: false
         type: string
         default: .
-      node-version:
-        required: false
-        type: string
-      pnpm-version:
-        required: false
-        type: string
-      package-json-file:
-        required: false
-        default: "package.json"
-        type: string
 
 jobs:
   setup:
@@ -36,15 +26,13 @@ jobs:
       - name: Install Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ inputs.node-version }}
-          node-version-file: ${{ inputs.package-json-file }}
+          node-version-file: package.json
 
-      - uses: pnpm/action-setup@v4
-        name: Install pnpm
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
         id: pnpm-install
         with:
-          version: ${{ inputs.pnpm-version }}
-          package_json_file: ${{ inputs.package-json-file }}
+          package_json_file: package.json
           run_install: false
 
       - name: Get pnpm store directory
