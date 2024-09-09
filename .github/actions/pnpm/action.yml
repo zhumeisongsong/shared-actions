@@ -14,7 +14,8 @@ runs:
       with:
         node-version-file: package.json
 
-    - uses: pnpm/action-setup@v4
+    - name: Setup pnpm
+      uses: pnpm/action-setup@v4
       with:
         package_json_file: package.json
 
