@@ -1,0 +1,31 @@
+name: Nextjs Lint
+
+on:
+  workflow_call:
+    inputs:
+      working-directory:
+        required: false
+        type: string
+        default: .
+
+jobs:
+  lint:
+    name: Lint
+    timeout-minutes: 5
+    defaults:
+      run:
+        working-directory: ${{ inputs.working-directory }}
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Restore pnpm store and install dependencies
+        uses: ./github/actions/pnpm
+
+      - name: Lint with ESLint
+        run: pnpm run lint
+
