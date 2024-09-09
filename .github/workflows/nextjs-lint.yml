@@ -24,7 +24,7 @@ jobs:
           fetch-depth: 1
 
       - name: Restore pnpm store and install dependencies
-        uses: ./github/actions/pnpm
+        uses: zhumeisongsong/shared-actions/.github/actions/pnpm@main
 
       - name: Lint with ESLint
         run: pnpm run lint
