@@ -9,19 +9,28 @@ on:
         default: .
 
 jobs:
-  deploy:
-    name: Deploy
+  build:
+    name: Build
     timeout-minutes: 5
     defaults:
       run:
         working-directory: ${{ inputs.working-directory }}
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     
     steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Restore Pnpm Store and Install Dependencies
+        uses: zhumeisongsong/shared-actions/.github/actions/pnpm@main
+
+      - name: Build with Next.js
+        run: pnpm run build
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./out
 
