@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check out code
+      - name: Checkout Code
         uses: actions/checkout@v4
         with:
           fetch-depth: 2
@@ -28,20 +28,20 @@ jobs:
         with:
           node-version-file: package.json
 
-      - name: Install pnpm
+      - name: Install Pnpm
         uses: pnpm/action-setup@v4
         id: pnpm-install
         with:
           package_json_file: package.json
           run_install: false
 
-      - name: Get pnpm store directory
+      - name: Get Pnpm Store Directory
         id: pnpm-cache
         shell: bash
         run: |
           echo "STORE_PATH=$(pnpm store path)" >> "$GITHUB_OUTPUT"
 
-      - name: Cache pnpm store
+      - name: Cache Pnpm Store
         id: cache-pnpm-store
         uses: actions/cache@v4
         env:
@@ -52,6 +52,6 @@ jobs:
           restore-keys: |
             ${{ env.cache-name }}-${{ runner.os }}-
 
-      - name: Install dependencies
+      - name: Install Dependencies
         if: ${{ steps.cache-pnpm-store.outputs.cache-hit == 'false' }}
         run: pnpm install --frozen-lockfile
