@@ -1,4 +1,4 @@
-name: Nextjs Type Check
+name: Typescript Type Check
 
 on:
   workflow_call:
