@@ -7,6 +7,9 @@ on:
         required: false
         type: string
         default: .
+    secrets:
+      npm-access-token:
+        required: true
 
 jobs:
   setup:
@@ -29,8 +32,9 @@ jobs:
           node-version-file: package.json
 
       - name: Setup npmrc
+        if: ${{ steps.cache-pnpm-store.outputs.cache-hit == 'false' }}
         env:
-          NPM_TOKEN: ${{ secrets. NPM_ACCESS_TOKEN}}
+          NPM_TOKEN: ${{ secrets.npm-access-token }}
         run: |
           cat << EOF > "$HOME/.npmrc"
            //registry.npmjs.org/:_authToken=$NPM_ACCESS_TOKEN
