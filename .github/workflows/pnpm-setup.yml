@@ -34,7 +34,7 @@ jobs:
       - name: Setup npmrc
         if: ${{ steps.cache-pnpm-store.outputs.cache-hit == 'false' }}
         env:
-          NPM_TOKEN: ${{ secrets.npm-access-token }}
+          NPM_ACCESS_TOKEN: ${{ secrets.npm-access-token }}
         run: |
           cat << EOF > "$HOME/.npmrc"
            //registry.npmjs.org/:_authToken=$NPM_ACCESS_TOKEN
