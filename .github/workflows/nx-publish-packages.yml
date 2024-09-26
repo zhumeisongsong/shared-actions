@@ -7,10 +7,9 @@ on:
         required: false
         type: string
         default: .
+    secrets:
       npm-access-token:
-        required: false
-        type: string
-        default: ''
+        required: true
 
 jobs:
   publish-packages:
@@ -31,7 +30,7 @@ jobs:
       - name: Restore Pnpm Store and Install Dependencies
         uses: zhumeisongsong/shared-actions/.github/actions/pnpm@main
         with: 
-          npm-access-token: ${{ inputs.npm-access-token }}
+          npm-access-token: ${{ secrets.npm-access-token }}
       - name: Build
         run: pnpm nx run-many -target=build --all
       - name: Publish Packages
