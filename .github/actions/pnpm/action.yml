@@ -41,7 +41,7 @@ runs:
     - name: Setup npmrc
       if: "${{ inputs.npm-token != '' }}"
       env:
-        NPM_ACCESS_TOKEN: ${{ secrets.npm-access-token }}
+        NPM_ACCESS_TOKEN: ${{ inputs.npm-access-token }}
       run: |
         cat << EOF > "$HOME/.npmrc"
          //registry.npmjs.org/:_authToken=$NPM_ACCESS_TOKEN
