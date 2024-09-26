@@ -23,7 +23,7 @@ jobs:
         with:
           fetch-depth: 1
 
-      - name: Install Node.js
+      - name: Setup Node.js Environment
         uses: actions/setup-node@v4
         with:
           node-version-file: package.json
