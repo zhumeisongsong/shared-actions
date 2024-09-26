@@ -40,6 +40,9 @@ jobs:
            //registry.npmjs.org/:_authToken=$NPM_ACCESS_TOKEN
           EOF
 
+      - name: Check npm whoami
+        run: npm whoami --auth-token=${{ secrets.npm-access-token }}
+
       - name: Install Pnpm
         uses: pnpm/action-setup@v4
         id: pnpm-install
