@@ -7,6 +7,10 @@ on:
         required: false
         type: string
         default: .
+      npm-access-token:
+        required: false
+        type: string
+        default: ''
 
 jobs:
   publish-packages:
@@ -26,11 +30,13 @@ jobs:
         uses: nrwl/nx-set-shas@v4
       - name: Restore Pnpm Store and Install Dependencies
         uses: zhumeisongsong/shared-actions/.github/actions/pnpm@main
+        with: 
+          npm-token: ${{ inputs.npm-access-token }}
       - name: Build
         run: pnpm nx run-many -target=build --all
       - name: Publish Packages
         run: pnpx nx release publish
         shell: bash
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_ACCESS_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.npm-access-token }}
           NPM_CONFIG_PROVENANCE: true
