@@ -28,6 +28,14 @@ jobs:
         with:
           node-version-file: package.json
 
+      - name: Setup npmrc
+        env:
+          NPM_TOKEN: ${{ secrets. NPM_ACCESS_TOKEN}}
+        run: |
+          cat << EOF > "$HOME/.npmrc"
+           //registry.npmjs.org/:_authToken=$NPM_ACCESS_TOKEN
+          EOF
+
       - name: Install Pnpm
         uses: pnpm/action-setup@v4
         id: pnpm-install

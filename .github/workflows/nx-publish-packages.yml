@@ -28,13 +28,6 @@ jobs:
         uses: zhumeisongsong/shared-actions/.github/actions/pnpm@main
       - name: Build
         run: pnpm nx run-many -target=build --all
-      - name: Setup npmrc
-        env:
-          NPM_TOKEN: ${{ secrets. NPM_ACCESS_TOKEN}}
-        run: |
-          cat << EOF > "$HOME/.npmrc"
-           //registry.npmjs.org/:_authToken=$NPM_ACCESS_TOKEN
-          EOF
       - name: Publish Packages
         run: pnpx nx release publish
         shell: bash
