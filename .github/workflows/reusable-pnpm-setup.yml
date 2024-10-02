@@ -1,4 +1,4 @@
-name: Pnpm Setup
+name: Reusable Pnpm Setup
 
 on:
   workflow_call:

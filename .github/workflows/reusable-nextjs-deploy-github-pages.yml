@@ -1,4 +1,4 @@
-name: Nextjs Deploy to Github Pages
+name: Reusable Nextjs Deploy to Github Pages
 
 on:
   workflow_call:

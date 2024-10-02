@@ -1,4 +1,4 @@
-name: Typescript Type Check
+name: Reusable Semantic Release
 
 on:
   workflow_call:
@@ -7,10 +7,13 @@ on:
         required: false
         type: string
         default: .
+    secrets:
+      REPO_ACCESSS_TOKEN:
+        required: true
 
 jobs:
-  type-check:
-    name: Type check
+  release:
+    name: Release
     timeout-minutes: 5
     defaults:
       run:
@@ -21,10 +24,12 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
         with:
-          fetch-depth: 1
+          fetch-depth: 0
 
       - name: Restore Pnpm Store and Install Dependencies
         uses: zhumeisongsong/shared-actions/.github/actions/pnpm@main
 
-      - name: Type check with TypeScript
-        run: pnpm run type-check
+      - name:  Run semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.REPO_ACCESSS_TOKEN }}
+        run: pnpm semantic-release

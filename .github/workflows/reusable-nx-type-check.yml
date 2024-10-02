@@ -1,4 +1,4 @@
-name: ESLint
+name: Reusable Nx Type Check
 
 on:
   workflow_call:
@@ -9,23 +9,24 @@ on:
         default: .
 
 jobs:
-  lint:
-    name: Lint
+  type-check:
+    name: Type check
     timeout-minutes: 5
     defaults:
       run:
         working-directory: ${{ inputs.working-directory }}
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
         with:
           fetch-depth: 1
-
+      - name: Nx set shas
+        uses: nrwl/nx-set-shas@v4
       - name: Restore Pnpm Store and Install Dependencies
         uses: zhumeisongsong/shared-actions/.github/actions/pnpm@main
-
-      - name: Lint with ESLint
-        run: pnpm run lint
+      - name: Type check with TypeScript
+        # Nx Affected runs only tasks affected by the changes in this PR/commit. Learn more: https://nx.dev/ci/features/affected
+        run: pnpm nx affected -target=type-check --parallel=3
 
