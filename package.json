@@ -1,0 +1,32 @@
+{
+	"name": "shared-actions",
+  "version": "0.0.0-semantic-release",
+  "license": "MIT",
+	"scripts": {
+    "commit": "git-cz"
+	},
+	"devDependencies": {
+		"git-cz": "^4.9.0",
+		"semantic-release": "^24.1.2"
+	},
+	"release": {
+    "branches": [
+      "main"
+    ],
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/github"
+    ]
+  },
+	"packageManager": "pnpm@9.11.o",
+	"volta": {
+		"node": "22.9.0",
+		"pnpm": "9.11.0"
+	},
+	"config": {
+    "commitizen": {
+      "path": "git-cz"
+    }
+  }
+}
