@@ -9,10 +9,10 @@ importers:
   .:
     devDependencies:
       git-cz:
-        specifier: ^4.9.0
+        specifier: 4.9.0
         version: 4.9.0
       semantic-release:
-        specifier: ^24.1.2
+        specifier: 24.1.2
         version: 24.1.2
 
 packages:
