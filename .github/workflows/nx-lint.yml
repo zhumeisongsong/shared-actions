@@ -21,7 +21,7 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          fetch-depth: 1
       - name: Nx set shas
         uses: nrwl/nx-set-shas@v4
       - name: Restore Pnpm Store and Install Dependencies
