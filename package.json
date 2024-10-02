@@ -5,6 +5,7 @@
 	"scripts": {
     "commit": "git-cz"
 	},
+  "author": "Zhumei Song <zhumeisongsong@gmail.com>",
 	"devDependencies": {
 		"git-cz": "4.9.0",
 		"semantic-release": "24.1.2"
