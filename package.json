@@ -19,7 +19,7 @@
       "@semantic-release/github"
     ]
   },
-	"packageManager": "pnpm@9.11.o",
+	"packageManager": "pnpm@9.11.0",
 	"volta": {
 		"node": "22.9.0",
 		"pnpm": "9.11.0"
