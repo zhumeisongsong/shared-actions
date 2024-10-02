@@ -6,8 +6,8 @@
     "commit": "git-cz"
 	},
 	"devDependencies": {
-		"git-cz": "^4.9.0",
-		"semantic-release": "^24.1.2"
+		"git-cz": "4.9.0",
+		"semantic-release": "24.1.2"
 	},
 	"release": {
     "branches": [
