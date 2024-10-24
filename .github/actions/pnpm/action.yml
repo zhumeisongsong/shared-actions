@@ -1,10 +1,14 @@
 name: Restore Pnpm Store and Install Dependencies
+description: Restore Pnpm Store and Install Dependencies
 
 inputs:
   working-directory:
+    description: "Working directory"
     required: false
-    type: string
     default: .
+  NPM_ACCESS_TOKEN:
+    description: "Npm access token"
+    required: false
 
 runs:
   using: "composite"
@@ -34,6 +38,16 @@ runs:
       with:
         path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
         key: ${{ env.cache-name }}-${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
+
+    - name: Setup npmrc
+      if: "${{ inputs.npm-token != '' }}"
+      env:
+        NPM_ACCESS_TOKEN: ${{ inputs.NPM_ACCESS_TOKEN }}
+      run: |
+        cat << EOF > "$HOME/.npmrc"
+         //registry.npmjs.org/:_authToken=$NPM_ACCESS_TOKEN
+        EOF
+      shell: bash
 
     - name: Install Dependencies
       run: |
