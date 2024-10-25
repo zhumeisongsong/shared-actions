@@ -6,8 +6,8 @@ inputs:
     description: "Working directory"
     required: false
     default: .
-  NPM_ACCESS_TOKEN:
-    description: "Npm access token"
+  NPM_TOKEN:
+    description: "Npm token"
     required: false
 
 runs:
@@ -40,12 +40,12 @@ runs:
         key: ${{ env.cache-name }}-${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
 
     - name: Setup npmrc
-      if: "${{ inputs.npm-token != '' }}"
+      if: "${{ inputs.NPM_TOKEN != '' }}"
       env:
-        NPM_ACCESS_TOKEN: ${{ inputs.NPM_ACCESS_TOKEN }}
+        NPM_TOKEN: ${{ inputs.NPM_TOKEN }}
       run: |
         cat << EOF > "$HOME/.npmrc"
-         //registry.npmjs.org/:_authToken=$NPM_ACCESS_TOKEN
+         //registry.npmjs.org/:_authToken=$NPM_TOKEN
         EOF
       shell: bash
 
