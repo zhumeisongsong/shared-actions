@@ -7,6 +7,9 @@ on:
         required: false
         type: string
         default: .
+      NPM_TOKEN:
+        required: false
+        type: string
 
 jobs:
   setup:
@@ -51,6 +54,16 @@ jobs:
           key: ${{ env.cache-name }}-${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
             ${{ env.cache-name }}-${{ runner.os }}-
+
+      - name: Setup npmrc
+        if: "${{ inputs.NPM_TOKEN != '' }}"
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          cat << EOF > "$HOME/.npmrc"
+           //registry.npmjs.org/:_authToken=$NPM_TOKEN
+          EOF
+        shell: bash
 
       - name: Install Dependencies
         if: ${{ steps.cache-pnpm-store.outputs.cache-hit == 'false' }}
