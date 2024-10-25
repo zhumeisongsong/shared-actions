@@ -7,9 +7,9 @@ on:
         required: false
         type: string
         default: .
+    secrets:
       NPM_TOKEN:
         required: false
-        type: string
 
 jobs:
   setup:
@@ -56,7 +56,7 @@ jobs:
             ${{ env.cache-name }}-${{ runner.os }}-
 
       - name: Setup npmrc
-        if: "${{ inputs.NPM_TOKEN != '' }}"
+        if: "${{ secrets.NPM_TOKEN != '' }}"
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
