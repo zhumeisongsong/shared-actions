@@ -6,9 +6,6 @@ inputs:
     description: "Working directory"
     required: false
     default: .
-  NPM_TOKEN:
-    description: "Npm token"
-    required: false
 
 runs:
   using: "composite"
@@ -38,16 +35,6 @@ runs:
       with:
         path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
         key: ${{ env.cache-name }}-${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
-
-    - name: Setup npmrc
-      if: "${{ inputs.NPM_TOKEN != '' }}"
-      env:
-        NPM_TOKEN: ${{ inputs.NPM_TOKEN }}
-      run: |
-        cat << EOF > "$HOME/.npmrc"
-         //registry.npmjs.org/:_authToken=$NPM_TOKEN
-        EOF
-      shell: bash
 
     - name: Install Dependencies
       run: |
