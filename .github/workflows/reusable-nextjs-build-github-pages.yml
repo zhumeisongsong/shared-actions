@@ -7,6 +7,9 @@ on:
         required: false
         type: string
         default: .
+      NEXT_PUBLIC_SITE_URL:
+        required: false
+        type: string
 
 jobs:
   build:
@@ -16,7 +19,7 @@ jobs:
       run:
         working-directory: ${{ inputs.working-directory }}
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -28,9 +31,10 @@ jobs:
 
       - name: Build with Next.js
         run: pnpm run build
+        env:
+          NEXT_PUBLIC_SITE_URL: ${{ inputs.NEXT_PUBLIC_SITE_URL || '' }}
 
-      - name: Upload artifact
+      - name: Upload Artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./out
-
