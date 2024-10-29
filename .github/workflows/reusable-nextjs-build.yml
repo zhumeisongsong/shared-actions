@@ -7,6 +7,9 @@ on:
         required: false
         type: string
         default: .
+      NEXT_PUBLIC_SITE_URL:
+        required: false
+        type: string
 
 jobs:
   build:
@@ -28,4 +31,5 @@ jobs:
 
       - name: Build with Next.js
         run: pnpm run build
-
+        env:
+          NEXT_PUBLIC_SITE_URL: ${{ inputs.NEXT_PUBLIC_SITE_URL || '' }}
