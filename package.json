@@ -1,16 +1,17 @@
 {
-	"name": "shared-actions",
+  "name": "shared-actions",
   "version": "0.0.0-semantic-release",
   "license": "MIT",
-	"scripts": {
+  "scripts": {
     "commit": "git-cz"
-	},
+  },
   "author": "Zhumei Song <zhumeisongsong@gmail.com>",
-	"devDependencies": {
-		"git-cz": "4.9.0",
-		"semantic-release": "24.2.0"
-	},
-	"release": {
+  "devDependencies": {
+    "@zhumeisong/git-cz-config": "^1.1.1",
+    "git-cz": "4.9.0",
+    "semantic-release": "24.2.0"
+  },
+  "release": {
     "branches": [
       "main"
     ],
@@ -20,12 +21,12 @@
       "@semantic-release/github"
     ]
   },
-	"packageManager": "pnpm@9.12.2",
-	"volta": {
-		"node": "22.9.0",
-		"pnpm": "9.12.2"
-	},
-	"config": {
+  "packageManager": "pnpm@9.12.2",
+  "volta": {
+    "node": "22.9.0",
+    "pnpm": "9.12.2"
+  },
+  "config": {
     "commitizen": {
       "path": "git-cz"
     }
