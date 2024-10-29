@@ -28,5 +28,5 @@ jobs:
         uses: zhumeisongsong/shared-actions/.github/actions/pnpm@main
       - name: Type check with TypeScript
         # Nx Affected runs only tasks affected by the changes in this PR/commit. Learn more: https://nx.dev/ci/features/affected
-        run: pnpm nx run-many -target=type-check --parallel=3
+        run: pnpm nx affected -target=type-check --parallel=3 --base=main
 
