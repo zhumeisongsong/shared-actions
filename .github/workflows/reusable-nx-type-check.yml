@@ -21,12 +21,12 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
         with:
-          fetch-depth: 1
+          fetch-depth: 0
       - name: Nx set shas
         uses: nrwl/nx-set-shas@v4
       - name: Restore Pnpm Store and Install Dependencies
         uses: zhumeisongsong/shared-actions/.github/actions/pnpm@main
       - name: Type check with TypeScript
         # Nx Affected runs only tasks affected by the changes in this PR/commit. Learn more: https://nx.dev/ci/features/affected
-        run: pnpm nx affected -target=type-check --parallel=3 --base=origin/main
+        run: pnpm nx affected -target=type-check --parallel=3 --base=main
 
