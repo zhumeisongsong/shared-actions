@@ -8,7 +8,7 @@ on:
         type: string
         default: .
     secrets:
-      REPO_ACCESS_TOKEN:
+      GITHUB_TOKEN:
         required: true
 
 jobs:
@@ -31,5 +31,5 @@ jobs:
 
       - name:  Run semantic-release
         env:
-          GITHUB_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: pnpm semantic-release
