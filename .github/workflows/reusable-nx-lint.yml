@@ -28,6 +28,6 @@ jobs:
         uses: zhumeisongsong/shared-actions/.github/actions/pnpm@main
       - name: Lint
         # Nx Affected runs only tasks affected by the changes in this PR/commit. Learn more: https://nx.dev/ci/features/affected
-        run: pnpm nx affected -target=lint --parallel=3 --base=main
+        run: pnpm nx affected -target=lint --parallel=3 --base=origin/main
 
 
