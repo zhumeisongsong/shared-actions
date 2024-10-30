@@ -1,4 +1,4 @@
-name: Reusable Nextjs Deploy to Github Pages
+name: Reusable Static HTML Deploy to Github Pages
 
 on:
   workflow_call:
