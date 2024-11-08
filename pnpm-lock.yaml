@@ -10,7 +10,7 @@ importers:
     devDependencies:
       '@zhumeisong/git-cz-config':
         specifier: ^1.1.1
-        version: 1.1.1
+        version: 1.2.0
       git-cz:
         specifier: 4.9.0
         version: 4.9.0
@@ -157,8 +157,8 @@ packages:
   '@types/semver@7.5.8':
     resolution: {integrity: sha512-I8EUhyrgfLrcTkzV3TSsGyl1tSuPrEDzr0yd5m90UgNxQkyDXULk3b6MlQqTCpZpNtWe1K0hzclnZkTcLBe2UQ==}
 
-  '@zhumeisong/git-cz-config@1.1.1':
-    resolution: {integrity: sha512-OPmi+IfK76kAeSdz6CnE5nTx9Bpz3UJMpnppxIDQlz6RSFXQDx3oG9XsvTHJJ8brZ7w/iBvFZgxWmFQfUhALuQ==}
+  '@zhumeisong/git-cz-config@1.2.0':
+    resolution: {integrity: sha512-AmGs1lmRhEbSpWaQDQ+RI30A0M+Ecxhd2jdxZLi7AxTPi3Zh0sN/WON1kHRDTlc7X4RFXG8DZVHC3oEiMpZ0uQ==}
 
   agent-base@7.1.1:
     resolution: {integrity: sha512-H0TSyFNDMomMNJQBn8wFV5YC/2eJ+VXECwOadZJT554xP6cODZHPX3H9QMQECxvrgiSOP1pHjy1sMWQVYJOUOA==}
@@ -1349,7 +1349,7 @@ snapshots:
 
   '@types/semver@7.5.8': {}
 
-  '@zhumeisong/git-cz-config@1.1.1': {}
+  '@zhumeisong/git-cz-config@1.2.0': {}
 
   agent-base@7.1.1:
     dependencies:
