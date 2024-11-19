@@ -2,11 +2,14 @@
   "name": "shared-actions",
   "version": "0.0.0-semantic-release",
   "license": "MIT",
+  "private": true,
   "scripts": {
     "commit": "git-cz"
   },
   "author": "Zhumei Song <zhumeisongsong@gmail.com>",
   "devDependencies": {
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
     "@zhumeisong/git-cz-config": "^1.1.1",
     "git-cz": "4.9.0",
     "semantic-release": "24.2.0"
@@ -18,7 +21,10 @@
     "plugins": [
       "@semantic-release/commit-analyzer",
       "@semantic-release/release-notes-generator",
-      "@semantic-release/github"
+      "@semantic-release/github",
+      "@semantic-release/npm",
+      "@semantic-release/git",
+      "@semantic-release/changelog"
     ]
   },
   "packageManager": "pnpm@9.12.3",
