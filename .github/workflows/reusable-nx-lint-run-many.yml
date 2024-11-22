@@ -1,4 +1,4 @@
-name: Reusable Nx Type Check
+name: Reusable Nx Lint
 
 on:
   workflow_call:
@@ -9,8 +9,8 @@ on:
         default: .
 
 jobs:
-  type-check:
-    name: Type check
+  lint:
+    name: Lint
     timeout-minutes: 5
     defaults:
       run:
@@ -26,7 +26,7 @@ jobs:
         uses: nrwl/nx-set-shas@v4
       - name: Restore Pnpm Store and Install Dependencies
         uses: zhumeisongsong/shared-actions/.github/actions/pnpm@main
-      - name: Type check with TypeScript
-        # Nx Affected runs only tasks affected by the changes in this PR/commit. Learn more: https://nx.dev/ci/features/affected
-        run: pnpm nx run-many -target=type-check --parallel=3
+      - name: Lint
+        run: pnpm nx run-many -target=lint --parallel=3
+
 
