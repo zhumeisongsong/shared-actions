@@ -25,6 +25,8 @@ jobs:
 
       - name: Restore Pnpm Store and Install Dependencies
         uses: zhumeisongsong/shared-actions/.github/actions/pnpm@main
+        with:
+          working-directory: ${{ inputs.working-directory }}
 
       - name: Lint with ESLint
         run: pnpm run lint
