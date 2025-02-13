@@ -26,13 +26,13 @@ jobs:
       - name: Setup Node.js Environment
         uses: actions/setup-node@v4
         with:
-          node-version-file: package.json
+          node-version-file: ${{ inputs.working-directory }}/package.json
 
       - name: Install Pnpm
         uses: pnpm/action-setup@v4
         id: pnpm-install
         with:
-          package_json_file: package.json
+          package_json_file: ${{ inputs.working-directory }}/package.json
           run_install: false
 
       - name: Get Pnpm Store Directory
