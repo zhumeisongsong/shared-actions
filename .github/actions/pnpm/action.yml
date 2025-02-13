@@ -13,13 +13,13 @@ runs:
     - name: Setup Node.js Environment
       uses: actions/setup-node@v4
       with:
-        node-version-file: package.json
+        node-version-file: ${{ inputs.working-directory }}/package.json
         registry-url: https://registry.npmjs.org
 
     - name: Setup Pnpm
       uses: pnpm/action-setup@v4
       with:
-        package_json_file: package.json
+        package_json_file: ${{ inputs.working-directory }}/package.json
 
     - name: Get Pnpm Store Directory
       id: pnpm-cache
