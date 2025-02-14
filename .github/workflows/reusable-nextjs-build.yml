@@ -28,6 +28,8 @@ jobs:
 
       - name: Restore Pnpm Store and Install Dependencies
         uses: zhumeisongsong/shared-actions/.github/actions/pnpm@main
+        with:
+          working-directory: ${{ inputs.working-directory }}
 
       - name: Build with Next.js
         run: pnpm run build
